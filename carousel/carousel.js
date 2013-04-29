@@ -1,10 +1,13 @@
-var timer;
 var carousel = document.getElementById('carousel');
+var images = document.getElementsByTagName('img');
 var next = document.getElementById('next');
 var previous = document.getElementById('previous');
+var timer;
 
+carousel.style.marginLeft = 0;
 var x = carousel.style.marginLeft;
 x = 0;
+// images[0]
 
 function slideCarousel() {
 	var startx  = parseInt(carousel.style.marginLeft, 10);
@@ -12,15 +15,24 @@ function slideCarousel() {
 }
 
 function toLeft(){
-	carousel.style.marginLeft = (parseInt(carousel.style.marginLeft, 10) - 5) + 'px';
+	if(parseInt(carousel.style.marginLeft, 10) >= -1200){
+		carousel.style.marginLeft = (parseInt(carousel.style.marginLeft, 10) - 612) + 'px';
+	}
+	else{
+		carousel.style.marginLeft = 0;
+	}
 }
 
 function toRight(){
-	carousel.style.marginLeft = (parseInt(carousel.style.marginLeft, 10) + 5) + 'px';
+	if(parseInt(carousel.style.marginLeft, 10) <= -1){
+		carousel.style.marginLeft = (parseInt(carousel.style.marginLeft, 10) + 612) + 'px';
+	}
+	else{
+		carousel.style.marginLeft = "-1224px";
+	}
 }
 
-next.onclick = function() {timer = setInterval(toLeft, 2);};
-
-previous.onclick = function() {
-	timer = setInterval(toRight, 2);
-};
+next.onclick = function() {toLeft();};
+previous.onclick = function() {toRight();};
+// 	timer = setInterval(toRight, 2);
+// };
